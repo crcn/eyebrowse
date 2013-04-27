@@ -86,7 +86,7 @@ class ChromeDriver extends AppDriver
 ```
 
 
-### AppProcess AppDriver.start options, callback
+### Application AppDriver.start options, callback
   
 `options`
   - `version` - application version to run
@@ -99,17 +99,28 @@ class ChromeDriver extends AppDriver
 
 Returns the running processes
 
-### AppProcess.stop callback
+### Application.stop callback
 
 Stops the application process
 
-### AppProcess.exec options, callback
+### Application.exec options, callback
 
 executes a command against the running process
 
-### AppProcess.restart options
+### Application.restart options
 
 Restarts the application process
+
+### Application.running 
+
+TRUE if the application is running
+
+### Application.on event, callback
+
+Adds an event listener to the application process
+
+`stop` - emitted when the process exits
+`start` - emitted when the application starts
 
 
 
