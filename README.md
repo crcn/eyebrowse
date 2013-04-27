@@ -3,6 +3,16 @@ Apuppet is an utility which allows you to easily launch, and control application
 ### Usage
 
 ```
+  Usage: apuppet [options] [command]
+
+  Commands:
+
+    start <appName> [args] starts an application
+
+  Options:
+
+    -h, --help           output usage information
+    -c, --config <path>  apuppet configuration file
 ```
 
 ### Terminal Example
