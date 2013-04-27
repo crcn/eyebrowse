@@ -103,6 +103,10 @@ Returns the running processes
 
 Stops the application process
 
+### AppProcess.exec options, callback
+
+executes a command against the running process
+
 ### AppProcess.restart options
 
 Restarts the application process

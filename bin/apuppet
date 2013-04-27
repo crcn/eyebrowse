@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+var commander = require("commander"),
+apuppet       = require("..");
+
+commander.
+option("-c, --config <path>", "apuppet configuration file", String, "/usr/local/etc/apuppet/config");
+
+function initPuppet() {
+  return apuppet(require(commander.config.replace(/^\./, process.cwd()).replace("~", process.env.HOME)));
+}
+
+
+commander.
+command("start <appName> [args]").
+description("starts an application").
+action(function(app) {
+
+  var args  = process.argv.slice(3);
+
+  initPuppet().start({ name: app,  args: args }, function(e) {
+    if(e) console.error(e);
+  });
+});
+
+
+
+commander.parse(process.argv);
