@@ -1,5 +1,5 @@
 {
-  "name": "apuppet",
+  "name": "browsertap",
   "version": "0.0.1",
   "description": "apuppet =======",
   "main": "./lib/index.js",

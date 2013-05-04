@@ -3,7 +3,7 @@ Apuppet is an utility which allows you to easily launch, and control application
 ### Usage
 
 ```
-  Usage: apuppet [options] [command]
+  Usage: browsertap [options] [command]
 
   Commands:
 
@@ -12,7 +12,7 @@ Apuppet is an utility which allows you to easily launch, and control application
   Options:
 
     -h, --help           output usage information
-    -c, --config <path>  apuppet configuration file
+    -c, --config <path>  browsertap configuration file
 ```
 
 ### Terminal Example
@@ -20,20 +20,20 @@ Apuppet is an utility which allows you to easily launch, and control application
 Launching chrome 25
 
 ```
-apuppet start chrome@25 http://google.com
+browsertap start chrome@25 http://google.com
 ```
 
 Launching multiple applications:
 
 ```
-apuppet start chrome@25+firefox@18 http://google.com
+browsertap start chrome@25+firefox@18 http://google.com
 ```
 
 ### Command line examples
 
 ### Example
 
-In `/usr/local/etc/apuppet/config.json`
+In `/usr/local/etc/browsertap/config.json`
 
 ```javascript
 {
@@ -58,22 +58,22 @@ Structure of `/path/to/apps/dir`:
     - `settings/`
       - `...`
 
-### apuppet API
+### browsertap API
 
 
-### apuppet(options)
+### browsertap(options)
 
 ```javascript
-var apuppet = require("apuppet")({
+var browsertap = require("browsertap")({
   directory: "./path/to/apps"
 });
 ```
 
-### Array<AppDriver> apuppet.applications
+### Array<AppDriver> browsertap.applications
 
 Returns all the loaded applications
 
-### apuppet.start(options) 
+### browsertap.start(options) 
 
 Starts an application
 
