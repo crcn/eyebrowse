@@ -3,6 +3,11 @@ class BaseLoader
   ###
   ###
 
+  test: (options) -> false
+
+  ###
+  ###
+
   loadApplications: (callback) ->
   
 

@@ -1,6 +1,9 @@
-fs = require "fs"
-path = require "path"
-drivers = require "./drivers"
+_         = require "underscore"
+fs        = require "fs"
+path      = require "path"
+async     = require "async"
+AppLoader = require "./appLoader"
+outcome   = require "outcome"
 
 class DirectoryLoader extends require("../base")
 
@@ -16,39 +19,21 @@ class DirectoryLoader extends require("../base")
 
   loadApplications: (callback) ->
 
-
-    # temporarily register base classes so require() driver can extend them
-    @_registerGlobal()
+    apps = []
 
     for appName in fs.readdirSync @directory
-      @_applications[appName] = require path.join @directory, appName
 
-    # remove the globals
-    @_unregisterGlobal()
+      continue if appName is ".DS_Store"
 
-    callback()
+      dir = path.join @directory, appName
+      options = require dir
+      apps.push new AppLoader(_.extend({ directory: dir, name: appName }, options))
 
-  ###
-  ###
-
-  start: (options, callback) ->
-    app = @_applications[options.name]
+    async.map apps, ((app, next) ->
+      app.load next
+    ), callback
 
 
-  ###
-  ###
-
-  _registerGlobal: () ->
-    for name of drivers
-      global[name] = drivers[name]
-
-
-  ###
-  ###
-
-  _unregisterGlobal: () ->
-    for name of drivers
-      delete global[name]
 
 
 

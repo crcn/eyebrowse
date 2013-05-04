@@ -11,12 +11,4 @@ class RemoteLoader extends require("../base")
   loadApplications: (callback) ->
 
 
-  ###
-  ###
-
-  start: (options, callback) ->
-  
-
-
-
 module.exports = RemoteLoader

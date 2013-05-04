@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+
+process.env.APUPPET_LOG=1
 var commander = require("commander"),
 apuppet       = require("..");
 
@@ -10,15 +12,16 @@ function initPuppet() {
 }
 
 
+
 commander.
 command("start <appName> [args]").
 description("starts an application").
 action(function(app) {
 
-  var args  = process.argv.slice(3);
+  var args  = process.argv.slice(4);
 
   initPuppet().start({ name: app,  args: args }, function(e) {
-    if(e) console.error(e);
+    if(e) console.error(e.stack);
   });
 });
 

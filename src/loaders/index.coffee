@@ -1,9 +1,9 @@
-async = require "async"
+async  = require "async"
+comerr = require "comerr"
 
 loaders = 
   directory : require("./directory")
   remote    : require("./remote")
-
 
 class Loaders extends require("./base")
 
@@ -16,7 +16,7 @@ class Loaders extends require("./base")
     for name of options
       continue if not (clazz = loaders[name])
       @_loaders.push new clazz(options[name])
-
+      
   ###
   ###
 

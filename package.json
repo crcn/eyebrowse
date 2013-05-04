@@ -1,6 +1,6 @@
 {
   "name": "apuppet",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "apuppet =======",
   "main": "./lib/index.js",
   "bin": {
@@ -23,6 +23,15 @@
     "coffee-script": "1.6.x",
     "stepc": "0.0.x",
     "commander": "1.1.x",
-    "cstep": "0.0.x"
+    "cstep": "0.0.x",
+    "comerr": "0.0.x",
+    "tq": "0.2.x",
+    "ejs": "0.8.x",
+    "flatten": "0.0.x",
+    "sift": "0.0.x",
+    "outcome": "0.0.x",
+    "underscore": "1.4.x",
+    "dirmr": "0.0.x",
+    "rmdir": "1.0.x"
   }
 }
