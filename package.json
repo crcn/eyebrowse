@@ -4,11 +4,11 @@
   "description": "apuppet =======",
   "main": "./lib/index.js",
   "bin": {
-    "apuppet": "./bin/apuppet"
+    "browsertap": "./bin/browsertap"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/crcn/apuppet.git"
+    "url": "git://github.com/crcn/browsertap-cli.git"
   },
   "author": "",
   "license": "BSD",

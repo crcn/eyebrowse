@@ -2,13 +2,13 @@
 
 process.env.APUPPET_LOG=1
 var commander = require("commander"),
-apuppet       = require("..");
+browsertap       = require("..");
 
 commander.
-option("-c, --config <path>", "apuppet configuration file", String, "/usr/local/etc/apuppet/config");
+option("-c, --config <path>", "browsertap configuration file", String, "/usr/local/etc/browsertap/config");
 
 function initPuppet() {
-  return apuppet(require(commander.config.replace(/^\./, process.cwd()).replace("~", process.env.HOME)));
+  return browsertap(require(commander.config.replace(/^\./, process.cwd()).replace("~", process.env.HOME)));
 }
 
 
