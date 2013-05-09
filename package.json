@@ -4,7 +4,7 @@
   "description": "apuppet =======",
   "main": "./lib/index.js",
   "bin": {
-    "apuppet": "./bin/apuppet"
+    "eyebrowse": "./bin/cli"
   },
   "repository": {
     "type": "git",

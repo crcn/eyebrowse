@@ -76,6 +76,11 @@ class Application extends events.EventEmitter
   ###
   ###
 
+  getVersions: (callback) -> callback null, @versions.map (v) -> v.number
+
+  ###
+  ###
+
   killAll: cstep (callback) ->
     utils.killProcesses @processNames, callback
 
