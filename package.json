@@ -1,5 +1,5 @@
 {
-  "name": "apuppet",
+  "name": "browsertap",
   "version": "0.0.1",
   "description": "apuppet =======",
   "main": "./lib/index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/crcn/apuppet.git"
+    "url": "git://github.com/crcn/browsertap-cli.git"
   },
   "author": "",
   "license": "BSD",
