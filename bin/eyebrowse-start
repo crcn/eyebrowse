@@ -19,9 +19,9 @@ client.use({
   remote: eyebrowse.Client.plugins.chunnel.client()
 });
 
-client.use({
+/*client.use({
   remote: eyebrowse.Client.plugins.rdp
-})
+})*/
 
 client.start({ name: commander.args.shift(), args: commander.args }, function(err) {
   if(err) {
