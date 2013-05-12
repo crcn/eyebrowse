@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+process.env.APUPPET_LOG=1
+var commander = require("commander"),
+eyebrowse       = require("..")
+
+commander.
+command("start [browser]", "starts a browser").
+parse(process.argv);

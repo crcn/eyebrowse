@@ -6,11 +6,11 @@ build:
 	nexe -i ./lib/index.js -o ./build/apuppet;
 
 
-app: 
+all: 
 	coffee -o lib -c src;
 
 
-app-watch:
+all-watch:
 	coffee -o lib -cw src;
 
 

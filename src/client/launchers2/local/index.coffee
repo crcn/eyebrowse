@@ -2,6 +2,7 @@ _         = require "underscore"
 fs        = require "fs"
 path      = require "path"
 async     = require "async"
+utils     = require "../../../utils"
 AppLoader = require "./appLoader"
 outcome   = require "outcome"
 

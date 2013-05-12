@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+process.env.APUPPET_LOG=1
+var commander = require("commander"),
+eyebrowse       = require("..");
+
+
+commander.
+usage("[browser] [args...]").
+description("starts a browser").
+option("-c, --config [config]", "the configuration path for eyebrowse", eyebrowse.utils.fixPath, "/usr/local/etc/eyebrowse/config").
+parse(process.argv);
+
+
+var client = new eyebrowse.Client(require(commander.config));
+
+client.start({ name: commander.args.shift(), args: commander.args }, function(err) {
+  if(err) {
+    console.error(err.message);
+  }
+});
+

@@ -1,6 +1,23 @@
+fs       = require "fs"
 async    = require "async"
+path     = require "path"
 exec     = require("child_process").exec
 platform = require("os").platform()
+
+
+exports.fixPath = (path) -> 
+  path.
+  replace(/^\./, process.cwd()).
+  replace(/^~/, process.env.HOME)
+
+
+
+exports.readdir = (dir) -> fs.readdirSync(dir).filter((name) ->
+    name isnt ".DS_Store"
+  ).map((name) ->
+    path.join(dir, name)
+  )
+
 
 exports.killProcesses = (processNames, callback) ->
   async.forEach processNames, ((name, next) ->

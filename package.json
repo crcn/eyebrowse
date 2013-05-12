@@ -4,7 +4,10 @@
   "description": "apuppet =======",
   "main": "./lib/index.js",
   "bin": {
-    "eyebrowse": "./bin/cli"
+    "eyebrowse": "./bin/eyebrowse",
+    "eyebrowse-server": "./bin/eyebrowse-server",
+    "eyebrowse-start": "./bin/eyebrowse-start",
+    "eyebrowse-list": "./bin/eyebrowse-list"
   },
   "repository": {
     "type": "git",
@@ -32,6 +35,9 @@
     "outcome": "0.0.x",
     "underscore": "1.4.x",
     "dirmr": "0.0.x",
-    "rmdir": "1.0.x"
+    "rmdir": "1.0.x",
+    "chunnel": "0.1.x",
+    "asyngleton": "0.1.x",
+    "fiddle": "0.0.x"
   }
 }
