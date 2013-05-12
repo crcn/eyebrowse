@@ -27,6 +27,21 @@ class BrowserLauncher
         launcher.use modules[launcher.name]
 
   ###
+  ###
+
+  test: (options, callback) ->
+    ops = @_fixOptions options
+    async.eachSeries @_launchers, ((launcher, next) ->
+      launcher.test ops, (err) ->
+        return next() if err?
+        callback null, launcher
+    ), () ->
+      callback new Error "#{ops.name}@#{ops.version} does not exist"
+
+
+
+
+  ###
    starts a browser
   ###
 
@@ -34,13 +49,11 @@ class BrowserLauncher
 
     ops = @_fixOptions options
 
-    async.eachSeries @_launchers, ((launcher, next) ->
+    @test ops, (err, launcher) ->
+      return callback(err) if err?
       launcher.start ops, (err) ->
         return callback arguments... unless err?
-        next() 
-    ), () ->
-      callback new Error "#{ops.name}@#{ops.version} does not exist"
-
+        next()
 
   ###
    lists available browsers

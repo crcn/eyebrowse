@@ -24,6 +24,17 @@ class Browser extends EventEmitter
     @name = path.basename directory
 
 
+  ###
+  ###
+
+  test: (options, callback) ->
+    version = sift({ number: options.version }, @versions).shift()
+
+    if not version
+      return callback new Error "#{@name}@#{options.version} does not exist"
+
+    callback null, version
+
 
   ###
   ###
@@ -31,21 +42,19 @@ class Browser extends EventEmitter
   start: (options, callback) -> 
 
     @killAll () =>
-      @currentVersion = version = sift({ number: options.version }, @versions).shift()
-
-      if not version
-        return callback new Error "#{@name}@#{options.version} does not exist"
-
-      @_copySettingsToSys () =>
-        if /win/.test(platform)
-          command = "start /WAIT \"\" \"#{version.path}\" #{options.args.join(" ")}"
-        else
-          command = "open \"#{version.path}\" -W --args #{options.args.join(" ")}"
+      @test options, (err, version) =>
+        @currentVersion = version
+        return callback(err) if err?
+        @_copySettingsToSys () =>
+          if /win/.test(platform)
+            command = "start /WAIT \"\" \"#{version.path}\" #{options.args.join(" ")}"
+          else
+            command = "open \"#{version.path}\" -W --args #{options.args.join(" ")}"
 
 
-        utils.logger.log command
-        @_process = exec command
-        @_process.on "exit", @_onExit
+          utils.logger.log command
+          @_process = exec command
+          @_process.on "exit", @_onExit
 
   ###
   ###

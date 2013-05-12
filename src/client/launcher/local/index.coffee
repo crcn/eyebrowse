@@ -22,15 +22,26 @@ class LocalLauncher extends require("../base")
   ###
   ###
 
-
-  start: (options, callback) ->
-
+  test: (options, callback) -> 
     @load () =>
       browser = sift({ name: options.name }, @browsers).pop()
 
       if not browser
         return callback new Error "browser #{options.name} does not exist"
 
+      browser.test options, (err) ->
+        return callback(err) if err?
+        callback null, browser
+
+
+
+  ###
+  ###
+
+
+  start: (options, callback) ->
+    @test options, (err, browser) =>
+      return callback(err) if err?
       browser.start options, callback
 
 

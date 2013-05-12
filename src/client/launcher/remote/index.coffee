@@ -29,6 +29,13 @@ class RemoteLauncher extends require("../base")
   ###
   ###
 
+  test: (options, callback) ->
+    @load () =>
+      @client.test options, callback
+
+  ###
+  ###
+
   start: (options, callback) ->
     @load () => 
       @client.start options, callback

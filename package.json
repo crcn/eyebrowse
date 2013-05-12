@@ -1,6 +1,6 @@
 {
-  "name": "browsertap",
-  "version": "0.0.1",
+  "name": "eyebrowse",
+  "version": "0.0.2",
   "description": "apuppet =======",
   "main": "./lib/index.js",
   "bin": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/crcn/browsertap-cli.git"
+    "url": "git://github.com/crcn/eyebrowse.git"
   },
   "author": "",
   "license": "BSD",
