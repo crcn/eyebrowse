@@ -8,7 +8,7 @@ eyebrowse       = require("..");
 commander.
 usage("[browser] [args...]").
 description("starts a browser").
-option("-c, --config [config]", "the configuration path for eyebrowse", eyebrowse.utils.fixPath, "/usr/local/etc/eyebrowse/config").
+option("-c, --config [config]", "the configuration path for eyebrowse", eyebrowse.utils.fixPath, require("./defaultConfigPath")).
 parse(process.argv);
 
 
