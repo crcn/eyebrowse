@@ -16,12 +16,11 @@ var client = new eyebrowse.Client(require(commander.config));
 
 
 client.use({
-  local: function(launcher) {
-    launcher.pre("load", function(next) {
-      console.log("PE")
-      next();
-    });
-  }
+  remote: eyebrowse.Client.plugins.chunnel.client()
+});
+
+client.use({
+  remote: eyebrowse.Client.plugins.rdp
 })
 
 client.start({ name: commander.args.shift(), args: commander.args }, function(err) {
