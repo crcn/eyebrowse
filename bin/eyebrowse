@@ -6,4 +6,5 @@ eyebrowse       = require("..")
 
 commander.
 command("start [browser]", "starts a browser").
+command("server [port]", "starts the eyebrowse server").
 parse(process.argv);

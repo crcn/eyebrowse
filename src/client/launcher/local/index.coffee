@@ -6,36 +6,38 @@ async   = require "async"
 Browser = require "./browser"
 sift    = require "sift"
 Loader  = require("./loader")
+asyngleton = require "asyngleton"
 
-class LocalLauncher
+class LocalLauncher extends require("../base")
 
   ###
   ###
 
   constructor: (path) ->
+    super()
     @directory = utils.fixPath path
     @_loader = new Loader @directory
-    @load()
     @_listenOnExit()
 
   ###
   ###
 
 
-  start: cstep (options, callback) ->
+  start: (options, callback) ->
 
-    browser = sift({ name: options.name }, @browsers).pop()
+    @load () =>
+      browser = sift({ name: options.name }, @browsers).pop()
 
-    if not browser
-      return callback new Error "browser #{options.name} does not exist"
+      if not browser
+        return callback new Error "browser #{options.name} does not exist"
 
-    browser.start options, callback
+      browser.start options, callback
 
 
   ###
   ###
 
-  load: cstep (callback) ->
+  load: asyngleton cstep (callback) ->
     @_loader.load (err, @browsers) => callback(err)
 
   ###
@@ -45,6 +47,7 @@ class LocalLauncher
     process.once "SIGINT", () =>
       for app in @browsers
         app.stop()
+      process.exit()
 
 
 

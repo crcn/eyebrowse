@@ -14,7 +14,8 @@ class Factory
 
     for type of options
       clazz = available[type]
-      launchers.push new clazz options[type]
+      launchers.push inst = new clazz options[type]
+      inst.name = type
 
     launchers
 

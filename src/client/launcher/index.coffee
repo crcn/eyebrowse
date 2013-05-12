@@ -17,6 +17,16 @@ class BrowserLauncher
     @_launchers = factory.getLaunchers options
 
   ###
+  ###
+
+  use: (modules) ->
+    for launcher in @_launchers 
+      if typeof modules is "function"
+        launcher.use modules
+      else if modules[launcher.name]
+        launcher.use modules[launcher.name]
+
+  ###
    starts a browser
   ###
 
@@ -30,7 +40,6 @@ class BrowserLauncher
         next() 
     ), () ->
       callback new Error "#{ops.name}@#{ops.version} does not exist"
-
 
 
   ###

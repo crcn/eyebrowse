@@ -1,3 +1,4 @@
 module.exports =
-  Client: require "./client"
-  utils: require "./utils"
+  Client : require "./client"
+  Server : require "./server"
+  utils  : require "./utils"

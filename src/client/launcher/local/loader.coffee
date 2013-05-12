@@ -22,7 +22,6 @@ class Loader
 
   load: asyngleton cstep (callback) ->
 
-
     browsers = utils.readdir(@directory).map (dir) => 
       config = @_fixConfig dir, require dir
       new Browser dir, config, @_loadVersions(config)

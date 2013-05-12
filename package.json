@@ -38,6 +38,9 @@
     "rmdir": "1.0.x",
     "chunnel": "0.1.x",
     "asyngleton": "0.1.x",
-    "fiddle": "0.0.x"
+    "fiddle": "0.0.x",
+    "dnode": "1.0.x",
+    "hooks": "0.3.x",
+    "dsync": "0.0.x"
   }
 }
