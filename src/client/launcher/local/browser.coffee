@@ -11,7 +11,7 @@ outcome = require "outcome"
 async = require "async"
 rmdir = require "rmdir"
 dirmr = require "dirmr"
-platform = require("os").platform
+os = require("os")
 exec = require("child_process").exec
 EventEmitter = require("events").EventEmitter
 
@@ -46,7 +46,7 @@ class Browser extends EventEmitter
         @currentVersion = version
         return callback(err) if err?
         @_copySettingsToSys () =>
-          if /win/.test(platform)
+          if os.type() is "Windows_NT"
             command = "start /WAIT \"\" \"#{version.path}\" #{options.args.join(" ")}"
           else
             command = "open \"#{version.path}\" -W --args #{options.args.join(" ")}"

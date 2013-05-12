@@ -15,6 +15,7 @@ class Loader
   ###
 
   constructor: (@directory) ->
+    @load()
 
   ###
   ###
@@ -22,7 +23,7 @@ class Loader
 
   load: asyngleton cstep (callback) ->
 
-    browsers = utils.readdir(@directory).map (dir) => 
+    browsers = utils.readdir(@directory).map (dir) =>
       config = @_fixConfig dir, require dir
       new Browser dir, config, @_loadVersions(config)
 
@@ -64,7 +65,6 @@ class Loader
 
 
     settingPaths = {}
-
     if fs.existsSync config.directories.settings
       for name in fs.readdirSync(config.directories.settings)
         versions = name.split(" ")

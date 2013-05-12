@@ -5,10 +5,10 @@ exec     = require("child_process").exec
 platform = require("os").platform()
 
 
-exports.fixPath = (path) -> 
+exports.fixPath = (path) ->   
   path.
   replace(/^\./, process.cwd()).
-  replace(/^~/, process.env.HOME)
+  replace(/^~/, process.env.HOME or process.env.HOMEPATH)
 
 
 
