@@ -14,12 +14,17 @@ parse(process.argv);
 
 var config = require(commander.config);
 
-var client = new eyebrowse.Client(config);
+var client = new eyebrowse.Client(config.transports);
 
+var use = {};
 
-client.use({
-  remote: eyebrowse.Client.plugins.chunnel.client()
-});
+if(config.use && config.use.client) {
+  for(var u in config.use.client) {
+    var cfg = {};
+    cfg[u] = eyebrowse.Client.plugins[u].client(config.use.client[u]);
+    client.use(cfg);
+  }
+}
 
 client.listBrowsers(function(err, browsers) {
   browsers.forEach(function(browser) {

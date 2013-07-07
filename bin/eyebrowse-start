@@ -13,11 +13,17 @@ parse(process.argv);
 
 
 var config = require(commander.config),
-client = new eyebrowse.Client(config);
+client = new eyebrowse.Client(config.transports);
 
-client.use({
-  remote: eyebrowse.Client.plugins.chunnel.client()
-});
+var use = {};
+
+if(config.use && config.use.client) {
+  for(var u in config.use.client) {
+    var cfg = {};
+    cfg[u] = eyebrowse.Client.plugins[u].client(config.use.client[u]);
+    client.use(cfg);
+  }
+}
 
 client.start({ name: commander.args.shift(), args: commander.args }, function(err) {
   if(err) {
