@@ -7,6 +7,7 @@ _ = require "underscore"
 path = require "path"
 fs = require "fs"
 fiddle = require "fiddle"
+winston = require "winston"
 
 
 class Loader
@@ -23,13 +24,14 @@ class Loader
 
   load: asyngleton cstep (callback) ->
 
+    winston.info "load local #{@directory}"
+
     browsers = utils.readdir(@directory).map (dir) =>
       config = @_fixConfig dir, require dir
       new Browser dir, config, @_loadVersions(config)
 
     callback null, browsers
-    
-
+  
 
   ###
   ###
@@ -47,8 +49,6 @@ class Loader
       new Version vc
 
     versions
-
-
 
 
   ###

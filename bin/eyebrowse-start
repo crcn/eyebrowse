@@ -12,16 +12,12 @@ option("-c, --config [config]", "the configuration path for eyebrowse", eyebrows
 parse(process.argv);
 
 
-var client = new eyebrowse.Client(require(commander.config));
-
+var config = require(commander.config),
+client = new eyebrowse.Client(config);
 
 client.use({
   remote: eyebrowse.Client.plugins.chunnel.client()
 });
-
-/*client.use({
-  remote: eyebrowse.Client.plugins.rdp
-})*/
 
 client.start({ name: commander.args.shift(), args: commander.args }, function(err) {
   if(err) {

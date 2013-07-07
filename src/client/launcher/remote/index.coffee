@@ -2,6 +2,7 @@ dnode = require "dnode"
 cstep = require "cstep"
 Url   = require "url"
 asyngleton = require "asyngleton"
+winston = require "winston"
 
 class RemoteLauncher extends require("../base")
 
@@ -24,7 +25,14 @@ class RemoteLauncher extends require("../base")
     d = dnode()
     d.on "remote", (@client) =>
       callback()
+
+    winston.info "load remote #{@address.hostname}:#{@address.port}"
     d.connect(@address.port, @address.hostname)
+
+  ###
+  ###
+
+  listBrowsers: (callback) => @load () => callback null, []
 
   ###
   ###

@@ -2,5 +2,31 @@
 
 process.env.APUPPET_LOG=1
 var commander = require("commander"),
-eyebrowse       = require("..")
+eyebrowse       = require("..");
 
+
+commander.
+usage("[browser] [args...]").
+description("starts a browser").
+option("-c, --config [config]", "the configuration path for eyebrowse", eyebrowse.utils.fixPath, require("./defaultConfigPath")).
+parse(process.argv);
+
+
+var config = require(commander.config);
+
+var client = new eyebrowse.Client(config);
+
+
+client.use({
+  remote: eyebrowse.Client.plugins.chunnel.client()
+});
+
+client.listBrowsers(function(err, browsers) {
+  browsers.forEach(function(browser) {
+    browser.versions.forEach(function(version) {
+      console.log("(%s) %s@%s", browser.type, browser.name, version.number);
+    });
+  });
+
+  process.exit();
+})

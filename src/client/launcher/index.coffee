@@ -4,9 +4,7 @@ factory    = require "./factory"
 outcome    = require "outcome"
 
 ###
-
 ###
-
 
 class BrowserLauncher
 
@@ -38,9 +36,6 @@ class BrowserLauncher
     ), () ->
       callback new Error "#{ops.name}@#{ops.version} does not exist"
 
-
-
-
   ###
    starts a browser
   ###
@@ -61,7 +56,10 @@ class BrowserLauncher
 
   listBrowsers: (callback) ->
     async.map @_launchers, ((launcher, next) ->
-      launcher.listBrowsers next
+      launcher.listBrowsers outcome.e(next).s (browsers) =>
+        next null, browsers.map (browser) =>
+          browser.type = launcher.name
+          browser
     ), outcome.e(callback).s (result) ->
       callback null, flatten result
 

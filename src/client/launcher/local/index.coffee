@@ -33,8 +33,6 @@ class LocalLauncher extends require("../base")
         return callback(err) if err?
         callback null, browser
 
-
-
   ###
   ###
 
@@ -44,12 +42,17 @@ class LocalLauncher extends require("../base")
       return callback(err) if err?
       browser.start options, callback
 
-
   ###
   ###
 
   load: asyngleton cstep (callback) ->
     @_loader.load (err, @browsers) => callback(err)
+
+
+  ###
+  ###
+
+  listBrowsers: (callback) -> @load () => callback null, @browsers
 
   ###
   ###
