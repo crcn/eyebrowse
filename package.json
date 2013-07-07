@@ -1,6 +1,6 @@
 {
   "name": "eyebrowse",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "apuppet =======",
   "main": "./lib/index.js",
   "bin": {
@@ -42,6 +42,7 @@
     "dnode": "1.0.x",
     "hooks": "0.3.x",
     "dsync": "0.0.x",
-    "winston": "~0.7.2"
+    "winston": "~0.7.2",
+    "ectwo": "0.0.10"
   }
 }
