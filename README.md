@@ -1,4 +1,4 @@
-Apuppet is an utility which allows you to easily launch, and control applications from the command line. It was built to launch different browser versions for cross-browser testing.
+Eyebrowse is an utility which allows you to easily launch, and control browsers from the command line. It was built to launch different browser versions for cross-browser testing.
 
 ### Usage
 
