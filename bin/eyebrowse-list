@@ -19,10 +19,12 @@ var client = new eyebrowse.Client(config.transports);
 var use = {};
 
 if(config.use && config.use.client) {
-  for(var u in config.use.client) {
-    var cfg = {};
-    cfg[u] = eyebrowse.Client.plugins[u].client(config.use.client[u]);
-    client.use(cfg);
+  for(var type in config.use.client) {
+    for(var name in config.use.client[type]) {
+      var cfg = {};
+      cfg[type] = eyebrowse.Client.plugins[name].client(config.use.client[type][name]);
+      client.use(cfg);
+    }
   }
 }
 

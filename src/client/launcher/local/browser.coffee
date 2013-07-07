@@ -84,8 +84,6 @@ class Browser extends EventEmitter
         dirmr([setting.from]).join(setting.to).complete(next)
       ), callback
 
-
-
   ###
   ###
 

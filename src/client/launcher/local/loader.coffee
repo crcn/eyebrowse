@@ -21,7 +21,6 @@ class Loader
   ###
   ###
 
-
   load: asyngleton cstep (callback) ->
 
     winston.info "load local #{@directory}"
@@ -49,7 +48,6 @@ class Loader
       new Version vc
 
     versions
-
 
   ###
   ###

@@ -15,4 +15,3 @@ parse(process.argv);
 var server = new eyebrowse.Server(require(commander.config));
 server.listen(Number(commander.args.shift()) || 9528);
 server.use(eyebrowse.Client.plugins.chunnel.server());
-

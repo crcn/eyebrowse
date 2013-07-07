@@ -15,12 +15,9 @@ class RemoteLauncher extends require("../base")
     unless ~address.indexOf("://")
       address = "http://" + address
 
-
-
     @address = Url.parse address
 
     @label = @address.hostname
-
 
   ###
   ###
