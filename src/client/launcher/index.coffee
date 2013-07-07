@@ -58,7 +58,7 @@ class BrowserLauncher
     async.map @_launchers, ((launcher, next) ->
       launcher.listBrowsers outcome.e(next).s (browsers) =>
         next null, browsers.map (browser) =>
-          browser.type = launcher.name
+          browser.type = launcher.label or launcher.name
           browser
     ), outcome.e(callback).s (result) ->
       callback null, flatten result

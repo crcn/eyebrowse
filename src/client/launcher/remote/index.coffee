@@ -15,7 +15,11 @@ class RemoteLauncher extends require("../base")
     unless ~address.indexOf("://")
       address = "http://" + address
 
+
+
     @address = Url.parse address
+
+    @label = @address.hostname
 
 
   ###
@@ -24,7 +28,7 @@ class RemoteLauncher extends require("../base")
   load: asyngleton cstep (callback) ->
     d = dnode()
     d.on "remote", (@client) =>
-      callback()
+      @client.listBrowsers (err, @browsers) => callback arguments...
 
     winston.info "load remote #{@address.hostname}:#{@address.port}"
     d.connect(@address.port, @address.hostname)
@@ -32,7 +36,7 @@ class RemoteLauncher extends require("../base")
   ###
   ###
 
-  listBrowsers: (callback) => @load () => callback null, []
+  listBrowsers: (callback) => @load () => callback null, @browsers
 
   ###
   ###

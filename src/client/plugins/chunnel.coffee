@@ -19,7 +19,6 @@ exports.client = (port = 9526) ->
         # localhost shouldn't resolve
         return next() if not err and (addresses[0] isnt "127.0.0.1")
 
-
         client = chunnel.client.connect({
           proxy: url,
           domain: url,
