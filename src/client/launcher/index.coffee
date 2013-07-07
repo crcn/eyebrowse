@@ -2,6 +2,7 @@ async      = require "async"
 flatten    = require "flatten"
 factory    = require "./factory"
 outcome    = require "outcome"
+toarray    = require "toarray"
 
 ###
 ###
@@ -22,7 +23,9 @@ class BrowserLauncher
       if typeof modules is "function"
         launcher.use modules
       else if modules[launcher.name]
-        launcher.use modules[launcher.name]
+        mods = toarray modules[launcher.name]
+        for m in mods
+          launcher.use m
 
   ###
   ###
