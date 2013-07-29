@@ -49,6 +49,16 @@ class BrowserLauncher
       callback new Error "#{ops.name}@#{ops.version} does not exist"
 
   ###
+  ###
+
+  getBrowser: (options, callback) ->
+    ops = @_fixOptions options
+    @test options, (err, launcher) ->
+      return callback(err) unless launcher
+      launcher.test ops, callback
+
+
+  ###
    starts a browser
   ###
 
@@ -61,6 +71,8 @@ class BrowserLauncher
       launcher.start ops, (err) ->
         return callback arguments... unless err?
         next()
+
+
 
   ###
    lists available browsers
