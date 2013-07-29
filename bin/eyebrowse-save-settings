@@ -1,0 +1,85 @@
+#!/usr/bin/env node
+
+process.env.APUPPET_LOG=1
+var commander = require("commander"),
+eyebrowse       = require(".."),
+dref            = require("dref"),
+fs              = require("fs"),
+dircpy           = require("directory-copy"),
+async           = require("async"),
+path  = require("path"),
+step = require("step"),
+rmdir = require("rmdir"),
+mkdirp = require("mkdirp"),
+spawn = require("child_process").spawn;
+
+
+commander.
+usage("[browser]").
+description("saves browser settings").
+option("-c, --config [config]", "the configuration path for eyebrowse", eyebrowse.utils.fixPath, require("./defaultConfigPath")).
+parse(process.argv);
+
+
+var config = require(commander.config);
+
+var client = new eyebrowse.Client(config.client);
+
+
+var nameInfo = (commander.args.shift() || "").split("@"),
+bops = {
+  name: nameInfo.shift(),
+  version: nameInfo.shift()
+};
+
+client.getBrowser(bops, function(err, browser) {
+
+  var cpSettings = dref.get(browser, "config.directories.settings"),
+  sySettings     = dref.get(browser, "config.settings"),
+  sysSettingsAr  = [];
+
+  if(!cpSettings || !sySettings) {
+    console.warn("unable to copy settings");
+    return;
+  }
+
+  for(var name in sySettings) {
+    sysSettingsAr.push({
+      name: name,
+      path: sySettings[name]
+    });
+  }
+
+  function fixPath(path) {
+    return path.replace("~", process.env.HOME);
+  }
+
+  async.eachSeries(sysSettingsAr, function(ops) {
+    var fullPath = fixPath(ops.path),
+    copyPath     = fixPath(path.normalize(cpSettings + "/" + bops.version + "/" + ops.name));
+
+
+    console.log("copy %s -> %s", fullPath, copyPath);
+
+    step(
+    function() {
+      if(!fs.existsSync(copyPath)) return this;
+      rmdir(copyPath, this);
+    },
+    function() {
+      mkdirp(path.dirname(copyPath), this);
+    }, 
+    function() {
+      var proc = spawn("cp", ["-rf", fullPath, copyPath]);
+      proc.stdout.pipe(process.stdout);
+      proc.stderr.pipe(process.stderr);
+      proc.on("exit", this);
+    },
+    function() {
+      console.log("DONE");
+    })
+
+  }, function(){});
+  
+
+})

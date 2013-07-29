@@ -23,6 +23,12 @@ class Browser extends EventEmitter
   constructor: (@directory, @config, @versions) ->
     @name = path.basename directory
 
+    @_systemSettingPaths = []
+
+    if @config.settings
+      for name of @config.settings
+        @_systemSettingPaths.push @config.settings[name]
+
 
   ###
   ###
@@ -67,22 +73,11 @@ class Browser extends EventEmitter
   ###
 
   cleanup: cstep (callback) ->
-    async.forEach @currentVersion.settings, ((setting, next) ->
-      return next() if not fs.existsSync setting.to
-      utils.logger.log "rm -rf #{setting.to}"
-      rmdir setting.to, next
+    async.forEach @_systemSettingPaths, ((settingPath, next) ->
+      return next() if not fs.existsSync settingPath
+      utils.logger.log "rm -rf #{settingPath}"
+      rmdir settingPath, next
     ), callback
-
-  ###
-  ###
-
-  _copySettingsToSys: (callback) ->
-    @cleanup outcome.e(callback).s () =>
-      async.forEach @currentVersion.settings, ((setting, next) ->
-        o = outcome.e next
-        utils.logger.log "cp #{setting.from} -> #{setting.to}"
-        dirmr([setting.from]).join(setting.to).complete(next)
-      ), callback
 
   ###
   ###

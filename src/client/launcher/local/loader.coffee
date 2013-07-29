@@ -57,6 +57,9 @@ class Loader
     config.directories = _.defaults config.directories or {}, { versions: "versions", settings: "settings" }
     config.settings = config.settings or {}
 
+    for name of config.settings
+      config.settings[name] = utils.fixPath config.settings[name]
+
     # fix the directory paths
     for dirname of config.directories
       config.directories[dirname] = path.join dir, config.directories[dirname]
@@ -73,7 +76,7 @@ class Loader
           for settingName of config.settings
             settings.push 
               from: path.join(vp, settingName)
-              to: utils.fixPath config.settings[settingName]
+              to: config.settings[settingName]
 
           settingPaths[version] = settings
 
