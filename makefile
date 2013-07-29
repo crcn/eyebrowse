@@ -1,13 +1,11 @@
-clean:
-	rm -rf lib;
-	rm -rf build;
-
-build:
-	nexe -i ./lib/index.js -o ./build/apuppet;
 
 
 all: 
 	coffee -o lib -c src;
+
+clean:
+	rm -rf lib;
+	rm -rf build;
 
 
 all-watch:

@@ -13,9 +13,9 @@ parse(process.argv);
 
 
 var config = require(commander.config),
-client = new eyebrowse.Client(config.transports);
+client = new eyebrowse.Client(config.client);
 
-var use = {};
+/*var use = {};
 
 if(config.use && config.use.client) {
   for(var type in config.use.client) {
@@ -25,7 +25,7 @@ if(config.use && config.use.client) {
       client.use(cfg);
     }
   }
-}
+}*/
 
 client.start({ name: commander.args.shift(), args: commander.args }, function(err) {
   if(err) {

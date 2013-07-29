@@ -12,8 +12,17 @@ class BrowserLauncher
   ###
   ###
 
-  constructor: (options) ->
-    @_launchers = factory.getLaunchers options
+  constructor: (config) ->
+    @_launchers = factory.getLaunchers config.transports
+
+    if config.plugin
+      for transportType of config.plugin
+        transportPluginConfig = config.plugin[transportType]
+        for name of transportPluginConfig
+          cfg = {}
+          cfg[transportType] = BrowserLauncher.plugins[name]?.client(transportPluginConfig)
+          @use cfg
+
 
   ###
   ###
@@ -79,6 +88,10 @@ class BrowserLauncher
     args    : options.args or []
     
 
+  ###
+  ###
+
+  @plugins: require("../plugins")
 
 
 

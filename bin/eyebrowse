@@ -7,4 +7,5 @@ commander.
 command("start [browser]", "starts a browser").
 command("server [port]", "starts the eyebrowse server").
 command("list", "lists the available servers").
+command("save-settings [browser]", "save browser settings").
 parse(process.argv);
