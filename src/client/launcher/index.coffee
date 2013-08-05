@@ -20,7 +20,7 @@ class BrowserLauncher
         transportPluginConfig = config.plugin[transportType]
         for name of transportPluginConfig
           cfg = {}
-          cfg[transportType] = BrowserLauncher.plugins[name]?.client(transportPluginConfig)
+          cfg[transportType] = BrowserLauncher.plugins[name]?.client(transportPluginConfig[name])
           @use cfg
 
 
