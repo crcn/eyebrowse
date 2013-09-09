@@ -1,6 +1,6 @@
 {
   "name": "eyebrowse",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "apuppet =======",
   "main": "./lib/index.js",
   "bin": {

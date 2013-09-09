@@ -61,6 +61,7 @@ class Browser extends EventEmitter
           utils.logger.log command
           @_process = exec command
           @_process.on "exit", @_onExit
+          callback null, @
 
   ###
   ###
