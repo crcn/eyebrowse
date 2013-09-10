@@ -70,7 +70,7 @@ class BrowserLauncher
       return callback(err) if err?
       launcher.start ops, (err) ->
         return callback arguments... unless err?
-        next()
+        next arguments...
 
 
 

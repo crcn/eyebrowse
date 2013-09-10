@@ -25,7 +25,8 @@ class RemoteLauncher extends require("../base")
   load: asyngleton cstep (callback) ->
     d = dnode()
     d.on "remote", (@client) =>
-      @client.listBrowsers (err, @browsers) => callback arguments...
+      @client.listBrowsers (err, @browsers) => 
+        callback arguments...
 
     winston.info "load remote #{@address.hostname}:#{@address.port}"
     d.connect(@address.port, @address.hostname)
