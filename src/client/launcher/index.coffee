@@ -68,9 +68,7 @@ class BrowserLauncher
 
     @test ops, (err, launcher) ->
       return callback(err) if err?
-      launcher.start ops, (err) ->
-        return callback arguments... unless err?
-        next arguments...
+      launcher.start ops, callback
 
 
 
