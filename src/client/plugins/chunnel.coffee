@@ -5,6 +5,9 @@ winston = require "winston"
 
 exports.client = (port = 9526) ->
   (launcher) ->
+
+    client = undefined
+  
     launcher.pre "start", (next, options) ->
       return next() unless options.args.length
 
@@ -19,6 +22,9 @@ exports.client = (port = 9526) ->
         # localhost shouldn't resolve
         return next() if not err and (addresses[0] isnt "127.0.0.1")
 
+        if client
+          client.close()
+
         client = chunnel.client.connect({
           proxy: url,
           domain: url,
@@ -30,6 +36,7 @@ exports.client = (port = 9526) ->
 
 
 exports.server = (port = 9526) ->
-  chunnel.server({}).listen(port)
+  chunnel.server({
+  }).listen(port)
 
   
