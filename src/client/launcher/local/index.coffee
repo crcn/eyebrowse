@@ -40,7 +40,9 @@ class LocalLauncher extends require("../base")
   start: (options, callback) ->
     @test options, (err, browser) =>
       return callback(err) if err?
-      browser.start options, callback
+      browser.start options, (err) ->
+        return callback(err) if err?
+        callback null, browser
 
   ###
   ###
