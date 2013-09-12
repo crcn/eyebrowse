@@ -1,4 +1,4 @@
-hooks = require "hooks"
+hook = require "../utils/hook"
 _ = require "underscore"
 
 class Launcher
@@ -8,9 +8,8 @@ class Launcher
   ###
 
   constructor: () ->
-    _.extend @, hooks
-    @hook "start", @start
-    @hook "load", @load
+    hook @, "start"
+    hook @, "load"
 
   ###
   ###
