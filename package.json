@@ -1,6 +1,6 @@
 {
   "name": "eyebrowse",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "apuppet =======",
   "main": "./lib/index.js",
   "bin": {
@@ -52,6 +52,7 @@
     "step": "0.0.x",
     "directory-copy": "0.0.x",
     "walkr": "0.0.x",
-    "toarray": "0.0.1"
+    "toarray": "0.0.1",
+    "type-component": "0.0.x"
   }
 }
