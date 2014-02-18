@@ -1,6 +1,6 @@
 {
   "name": "eyebrowse",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Eyebrowse is an utility which allows you to easily launch, and control browsers from the command line. It was built to launch different browser versions for cross-browser testing.",
   "main": "./lib/index.js",
   "directories": {
