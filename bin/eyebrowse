@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+
+require("commander").
+command("start [browser] [url]", "start a browser").
+command("list", "list available browsers").
+parse(process.argv);

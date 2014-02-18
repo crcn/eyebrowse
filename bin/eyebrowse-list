@@ -4,12 +4,11 @@ var commander = require("commander").parse(process.argv),
 utils = require("../lib/utils"),
 eyebrowse = require("..");
 
-var browser = commander.args[0],
-url         = commander.args[1];
-
-
 var eb = require("./_launcher")();
 
-
-eb.launch({ name: browser, args: [url] });
+eb._loader.getBrowsers(function (err, browsers) {
+  browsers.forEach(function (browser) {
+    console.log("%s@%s", browser.name, browser.version);
+  });
+});
 
